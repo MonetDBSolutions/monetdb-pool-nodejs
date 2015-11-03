@@ -9,7 +9,7 @@ Node module that maintains a connection pool with MonetDB connections.
 
 ## Example usage
 ```javascript
-var MDBPool = require("monetdb-pool"); // MDBPool now is a constructor
+var MonetDBPool = require("monetdb-pool"); // MonetDBPool now is a constructor
 
 var poolOptions = {
     nrConnections: 8
@@ -20,7 +20,7 @@ var dbOptions = {
     dbname: "mydb"
 };
 
-var pool = new MDBPool(poolOptions, dbOptions);
+var pool = new MonetDBPool(poolOptions, dbOptions);
 
 // Execute 1000 queries, which will be divided over all of the connections in the pool
 for(var i=0; i<1000; ++i) {
@@ -39,9 +39,9 @@ pool.close();
 
 
 
-## MDBPool object
+## MonetDBPool object
 
-#### MDBPool(poolOptions, dbOptions)
+#### MonetDBPool(poolOptions, dbOptions)
 Constructs a MonetDB connection pool.
 
 | Argument                  | Type          | Required       | Description     |
@@ -52,25 +52,25 @@ Constructs a MonetDB connection pool.
 | dbOptions                 | object        | yes            | Object containing database options for this pool. See https://github.com/MonetDB/monetdb-nodejs#options for the options you can use here.
 
 
-#### MDBPool.connect()
+#### MonetDBPool.connect()
 Calls the connect method on all initialized [MonetDBConnection objects](https://github.com/MonetDB/monetdb-nodejs#mdbconnection).
 
 Returns a promise that resolves when all connections are successfully connected.
 
-#### MDBPool.query(query, \[params\], \[prettyResult\])
+#### MonetDBPool.query(query, \[params\], \[prettyResult\])
 Calls [MonetDBConnection.query](https://github.com/MonetDB/monetdb-nodejs#mdbconnection_query) on the 
 [next available connection in the pool](#nextConnection).
 
 Returns the promise that is returned by [MonetDBConnection.query](https://github.com/MonetDB/monetdb-nodejs#mdbconnection_query).
 
-#### MDBPool.prepare(query, \[prettyResult\])
+#### MonetDBPool.prepare(query, \[prettyResult\])
 Calls [MonetDBConnection.prepare](https://github.com/MonetDB/monetdb-nodejs#mdbconnection_prepare) on the 
 [next available connection in the pool](#nextConnection).
 
 Returns the promise that is returned by [MonetDBConnection.prepare](https://github.com/MonetDB/monetdb-nodejs#mdbconnection_prepare).
 
 <a name="nextConnection"></a>
-#### MDBPool.nextConnection(\[reserve\])
+#### MonetDBPool.nextConnection(\[reserve\])
 Gives you a raw [MonetDBConnection object](https://github.com/MonetDB/monetdb-nodejs#mdbconnection) from the connection pool.
 A non-reserved connection with the least outstanding queries will be returned.
 
@@ -85,7 +85,7 @@ When there are no available (unreserved) connections, this method will return nu
 This might result in unfair query loads for the connection object you are using.
 Hence we advice to keep this kind of usage to a minimum.**
 
-#### MDBPool.close()
+#### MonetDBPool.close()
 Calls the close method on all initialized [MonetDBConnection objects](https://github.com/MonetDB/monetdb-nodejs#mdbconnection).
 
 Returns a promise that resolves when all connections are successfully closed.
