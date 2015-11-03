@@ -1,0 +1,37 @@
+{
+  "name": "monetdb-pool",
+  "version": "0.0.0",
+  "description": "Module that maintains a connection pool with MonetDB connections.",
+  "main": "index.js",
+  "dependencies": {
+    "q": "^1.4.1",
+    "monetdb": "^1.0.2"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "chai-as-promised": "^5.1.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0"
+  },
+  "scripts": {
+    "test": "`npm bin`/mocha Tests/test.js",
+    "coverage": "`npm bin`/istanbul cover `npm bin`/_mocha --report lcovonly -- -R spec Tests/test.js",
+    "coveralls": "npm run-script coverage && node node_modules/coveralls/bin/coveralls.js < coverage/lcov.info"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonetDB/monetdb-pool-nodejs.git"
+  },
+  "keywords": [
+    "monetdb",
+    "pool"
+  ],
+  "author": "Robin Cijvat <robin.cijvat@monetdbsolutions.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/MonetDB/monetdb-pool-nodejs/issues"
+  },
+  "homepage": "https://github.com/MonetDB/monetdb-pool-nodejs#readme"
+}
