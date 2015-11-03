@@ -68,6 +68,7 @@ Calls [MonetDBConnection.prepare](https://github.com/MonetDB/monetdb-nodejs#mdbc
 
 Returns the promise that is returned by [MonetDBConnection.prepare](https://github.com/MonetDB/monetdb-nodejs#mdbconnection_prepare).
 
+<a name="nextConnection"></a>
 #### MDBPool.nextConnection(\[reserve\])
 Gives you a raw [MonetDBConnection object](https://github.com/MonetDB/monetdb-nodejs#mdbconnection) from the connection pool.
 A non-reserved connection with the least outstanding queries will be returned.
