@@ -49,7 +49,7 @@ module.exports = function MonetDBPool(poolOptions, connOptions) {
             var args = arguments;
             return Q.all(
                 _connections.map(function (conn) {
-                    conn[d].apply(conn[d], args);
+                    return conn[d].apply(conn[d], args);
                 })
             );
         };
