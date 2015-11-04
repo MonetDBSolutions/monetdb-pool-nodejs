@@ -1,6 +1,6 @@
 {
   "name": "monetdb-pool",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Module that maintains a connection pool with MonetDB connections.",
   "main": "index.js",
   "dependencies": {
