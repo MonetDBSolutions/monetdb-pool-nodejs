@@ -55,7 +55,7 @@ module.exports = function MonetDBPool(poolOptions, connOptions) {
         };
     });
 
-    ["query", "prepare"].forEach(function(d) {
+    ["query", "querystream", "prepare"].forEach(function(d) {
         self[d] = function() {
             var args = arguments;
             var nextConn = self.nextConnection();
@@ -65,9 +65,27 @@ module.exports = function MonetDBPool(poolOptions, connOptions) {
                 return deferred.promise;
             }
             ++nextConn._runningQueries;
+            var conn = nextConn[d].apply(nextConn[d], args);
+			conn.release = function (){
+				--nextConn._runningQueries;			
+			}
+			//if streaming, we decrease the runningQueries number on the end event
+			if (conn.on){
+				conn.on('end', function() {
+					conn.release();
+				});
+			//if promise, we decrease the runningQueries number on the resolve
+			} else {
+			    conn = conn.fin(function() {					
+					--nextConn._runningQueries;					
+				});
+			}
+			
+			return conn;
+            /*Legacy
             return nextConn[d].apply(nextConn[d], args).fin(function() {
                 --nextConn._runningQueries;
-            });
+            });*/
         };
     });
 
@@ -78,6 +96,13 @@ module.exports = function MonetDBPool(poolOptions, connOptions) {
         });
     };
 
+    //function to set the load of the pool
+	self.getRunningQueries = function() {
+		var available = _connections
+						.filter(function(d) { return !d._reserved; })
+						.map(function(d) { return d._runningQueries; });
+		return available;				
+	};
     if(poolOptions.testing) {
         self.getConnections = function() {
             return _connections;
