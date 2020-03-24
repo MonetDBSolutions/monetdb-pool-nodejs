@@ -1,6 +1,6 @@
 # MonetDB Pool NodeJS
 
-[![Build Status](https://travis-ci.org/MonetDB/monetdb-pool-nodejs.svg)](https://travis-ci.org/MonetDB/monetdb-pool-nodejs)
+[![Build Status](https://travis-ci.org/MonetDBSolutions/monetdb-pool-nodejs.svg?branch=master)](https://travis-ci.org/github/MonetDBSolutions/monetdb-pool-nodejs)
 [![Coverage Status](https://coveralls.io/repos/MonetDB/monetdb-pool-nodejs/badge.svg?branch=master&service=github)](https://coveralls.io/github/MonetDB/monetdb-pool-nodejs?branch=master)
 [![npm version](https://badge.fury.io/js/monetdb-pool.svg)](https://badge.fury.io/js/monetdb-pool)
 [![Dependency Status](https://david-dm.org/MonetDB/monetdb-pool-nodejs.svg)](https://david-dm.org/MonetDB/monetdb-pool-nodejs)
